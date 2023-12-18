@@ -274,7 +274,7 @@ bool RealEstate::postNewProperty(User& loggedInUser) {
 
     if (type == "1") {
         cout << "On which floor is the property located? ";
-        while (!(cin >> floorNum) || cin.peek() != '\n') {
+        while (!(cin >> floorNum) || cin.peek() != '\n' || floorNum < 0) {
             cout << "Invalid input. Please enter a numeric value: ";
             cin.clear();
             while (cin.get() != '\n');
@@ -282,7 +282,7 @@ bool RealEstate::postNewProperty(User& loggedInUser) {
     }
     else if (type == "2") { 
         cout << "On which floor is the penthouse located? ";
-        while (!(cin >> floorNum) || cin.peek() != '\n') {
+        while (!(cin >> floorNum) || cin.peek() != '\n' || floorNum < 0) {
             cout << "Invalid input. Please enter a numeric value: ";
             cin.clear();
             while (cin.get() != '\n');
@@ -290,14 +290,14 @@ bool RealEstate::postNewProperty(User& loggedInUser) {
     }
     else if (type == "3") {
         cout << "Enter the number of rooms in the house: ";
-        while (!(cin >> rooms) || cin.peek() != '\n') {
+        while (!(cin >> rooms) || cin.peek() != '\n' || rooms < 1)  {
             cout << "Invalid input. Please enter a numeric value: ";
             cin.clear();
             while (cin.get() != '\n');
         }
 
         cout << "Enter the house number: ";
-        while (!(cin >> houseNum) || cin.peek() != '\n') {
+        while (!(cin >> houseNum) || cin.peek() != '\n' || houseNum < 1) {
             cout << "Invalid input. Please enter a numeric value: ";
             cin.clear();
             while (cin.get() != '\n');
@@ -316,8 +316,8 @@ bool RealEstate::postNewProperty(User& loggedInUser) {
     }
 
     cout << "Enter the price for the property: ";
-    while (!(cin >> price) || cin.peek() != '\n') {
-        cout << "Invalid input. Please enter a numeric value: ";
+    while (!(cin >> price) || price < 0 || cin.peek() != '\n') {
+        cout << "Invalid input. Please enter a non-negative numeric value for price: ";
         cin.clear();
         while (cin.get() != '\n');
     }
